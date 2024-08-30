@@ -1,6 +1,0 @@
-# lbrole/handlers/main.yml
-
-- name: "Redémarrer HAProxy"
-  service:
-    name: "haproxy"
-    state: restarted
