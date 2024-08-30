@@ -1,0 +1,24 @@
+# lbrole/tasks/main.yml
+
+- name: "Installer le package HAProxy"
+  package:
+    name: "haproxy"
+    state: present
+
+- name: "Configurer le fichier de conf HAProxy"
+  template:
+    src: "haproxy.cfg.j2"
+    dest: "/etc/haproxy/haproxy.cfg"
+  notify: "Redémarrer HAProxy"
+
+- name: "Arret HAPROXY"
+  service:
+    name: "haproxy"
+    state: stopped
+
+- name: "Démarrer le service HAProxy"
+  service:
+    name: "haproxy"
+    state: started
+
+

@@ -1,0 +1,32 @@
+- name: install apache2
+  remote_user: sla-admin
+  hosts: webserver
+  become: true
+  become_user: root
+  gather_facts: true
+  tasks:
+    - name: "Install apache2"
+      apt:
+        name: apache2
+        state: present
+
+    - name: "Replace default index.html with custom content"
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+<html>
+<head>
+<title>TitreBatard</title>
+</head>
+<body>
+<p>DATE DU JOUR</p>
+<p>HELLO WORLDS</p>
+</body>
+</html>
+      notify: restart apache
+
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted
