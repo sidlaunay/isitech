@@ -1,0 +1,5 @@
+- name: "Setup HAProxy"
+  hosts: haproxy
+  become: true
+  roles:
+    - role: lbrole
