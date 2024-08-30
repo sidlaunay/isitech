@@ -1,7 +1,0 @@
-# lbproject/webrole/setup.yml
-
-- name: "Configurer le serveur web"
-  hosts: myweb
-  become: true
-  roles:
-    - role: webrole
